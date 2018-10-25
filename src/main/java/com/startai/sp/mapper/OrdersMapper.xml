@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.startai.sp.dao.OrdersMapper">
+  <resultMap id="BaseResultMap" type="com.startai.sp.entity.Orders">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="no" jdbcType="CHAR" property="no" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="power_bank_id" jdbcType="VARCHAR" property="powerBankId" />
+    <result column="lent_time" jdbcType="TIMESTAMP" property="lentTime" />
+    <result column="lent_merchant_id" jdbcType="INTEGER" property="lentMerchantId" />
+    <result column="return_time" jdbcType="TIMESTAMP" property="returnTime" />
+    <result column="return_merchant_id" jdbcType="INTEGER" property="returnMerchantId" />
+    <result column="deposit" jdbcType="INTEGER" property="deposit" />
+    <result column="fee" jdbcType="INTEGER" property="fee" />
+    <result column="ips" jdbcType="VARCHAR" property="ips" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, no, status, user_id, power_bank_id, lent_time, lent_merchant_id, return_time, 
+    return_merchant_id, deposit, fee, ips, remark, created_at, updated_at, user_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orders
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.startai.sp.entity.Orders">
+    insert into orders (id, no, status, user_id, 
+      power_bank_id, lent_time, lent_merchant_id, 
+      return_time, return_merchant_id, deposit, 
+      fee, ips, remark, created_at, 
+      updated_at, user_type)
+    values (#{id,jdbcType=INTEGER}, #{no,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{userId,jdbcType=INTEGER}, 
+      #{powerBankId,jdbcType=VARCHAR}, #{lentTime,jdbcType=TIMESTAMP}, #{lentMerchantId,jdbcType=INTEGER}, 
+      #{returnTime,jdbcType=TIMESTAMP}, #{returnMerchantId,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, 
+      #{fee,jdbcType=INTEGER}, #{ips,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{userType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.startai.sp.entity.Orders">
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="no != null">
+        no,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="powerBankId != null">
+        power_bank_id,
+      </if>
+      <if test="lentTime != null">
+        lent_time,
+      </if>
+      <if test="lentMerchantId != null">
+        lent_merchant_id,
+      </if>
+      <if test="returnTime != null">
+        return_time,
+      </if>
+      <if test="returnMerchantId != null">
+        return_merchant_id,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="fee != null">
+        fee,
+      </if>
+      <if test="ips != null">
+        ips,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="no != null">
+        #{no,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="powerBankId != null">
+        #{powerBankId,jdbcType=VARCHAR},
+      </if>
+      <if test="lentTime != null">
+        #{lentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lentMerchantId != null">
+        #{lentMerchantId,jdbcType=INTEGER},
+      </if>
+      <if test="returnTime != null">
+        #{returnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnMerchantId != null">
+        #{returnMerchantId,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="ips != null">
+        #{ips,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.startai.sp.entity.Orders">
+    update orders
+    <set>
+      <if test="no != null">
+        no = #{no,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="powerBankId != null">
+        power_bank_id = #{powerBankId,jdbcType=VARCHAR},
+      </if>
+      <if test="lentTime != null">
+        lent_time = #{lentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lentMerchantId != null">
+        lent_merchant_id = #{lentMerchantId,jdbcType=INTEGER},
+      </if>
+      <if test="returnTime != null">
+        return_time = #{returnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnMerchantId != null">
+        return_merchant_id = #{returnMerchantId,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="ips != null">
+        ips = #{ips,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.startai.sp.entity.Orders">
+    update orders
+    set no = #{no,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      power_bank_id = #{powerBankId,jdbcType=VARCHAR},
+      lent_time = #{lentTime,jdbcType=TIMESTAMP},
+      lent_merchant_id = #{lentMerchantId,jdbcType=INTEGER},
+      return_time = #{returnTime,jdbcType=TIMESTAMP},
+      return_merchant_id = #{returnMerchantId,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      fee = #{fee,jdbcType=INTEGER},
+      ips = #{ips,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      user_type = #{userType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

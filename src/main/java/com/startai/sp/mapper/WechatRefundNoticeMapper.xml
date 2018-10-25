@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.startai.sp.dao.WechatRefundNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.startai.sp.entity.WechatRefundNotice">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="transaction_id" jdbcType="VARCHAR" property="transactionId" />
+    <result column="out_trade_no" jdbcType="VARCHAR" property="outTradeNo" />
+    <result column="refund_id" jdbcType="VARCHAR" property="refundId" />
+    <result column="out_refund_no" jdbcType="VARCHAR" property="outRefundNo" />
+    <result column="total_fee" jdbcType="INTEGER" property="totalFee" />
+    <result column="refund_fee" jdbcType="INTEGER" property="refundFee" />
+    <result column="settlement_total_fee" jdbcType="INTEGER" property="settlementTotalFee" />
+    <result column="settlement_refund_fee" jdbcType="INTEGER" property="settlementRefundFee" />
+    <result column="refund_status" jdbcType="VARCHAR" property="refundStatus" />
+    <result column="refund_recv_accout" jdbcType="VARCHAR" property="refundRecvAccout" />
+    <result column="success_time" jdbcType="TIMESTAMP" property="successTime" />
+    <result column="refund_account" jdbcType="VARCHAR" property="refundAccount" />
+    <result column="refund_request_source" jdbcType="VARCHAR" property="refundRequestSource" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, transaction_id, out_trade_no, refund_id, out_refund_no, total_fee, refund_fee, 
+    settlement_total_fee, settlement_refund_fee, refund_status, refund_recv_accout, success_time, 
+    refund_account, refund_request_source
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wechat_refund_notice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wechat_refund_notice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.startai.sp.entity.WechatRefundNotice">
+    insert into wechat_refund_notice (id, transaction_id, out_trade_no, 
+      refund_id, out_refund_no, total_fee, 
+      refund_fee, settlement_total_fee, settlement_refund_fee, 
+      refund_status, refund_recv_accout, success_time, 
+      refund_account, refund_request_source)
+    values (#{id,jdbcType=INTEGER}, #{transactionId,jdbcType=VARCHAR}, #{outTradeNo,jdbcType=VARCHAR}, 
+      #{refundId,jdbcType=VARCHAR}, #{outRefundNo,jdbcType=VARCHAR}, #{totalFee,jdbcType=INTEGER}, 
+      #{refundFee,jdbcType=INTEGER}, #{settlementTotalFee,jdbcType=INTEGER}, #{settlementRefundFee,jdbcType=INTEGER}, 
+      #{refundStatus,jdbcType=VARCHAR}, #{refundRecvAccout,jdbcType=VARCHAR}, #{successTime,jdbcType=TIMESTAMP}, 
+      #{refundAccount,jdbcType=VARCHAR}, #{refundRequestSource,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.startai.sp.entity.WechatRefundNotice">
+    insert into wechat_refund_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="transactionId != null">
+        transaction_id,
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no,
+      </if>
+      <if test="refundId != null">
+        refund_id,
+      </if>
+      <if test="outRefundNo != null">
+        out_refund_no,
+      </if>
+      <if test="totalFee != null">
+        total_fee,
+      </if>
+      <if test="refundFee != null">
+        refund_fee,
+      </if>
+      <if test="settlementTotalFee != null">
+        settlement_total_fee,
+      </if>
+      <if test="settlementRefundFee != null">
+        settlement_refund_fee,
+      </if>
+      <if test="refundStatus != null">
+        refund_status,
+      </if>
+      <if test="refundRecvAccout != null">
+        refund_recv_accout,
+      </if>
+      <if test="successTime != null">
+        success_time,
+      </if>
+      <if test="refundAccount != null">
+        refund_account,
+      </if>
+      <if test="refundRequestSource != null">
+        refund_request_source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="transactionId != null">
+        #{transactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null">
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundId != null">
+        #{refundId,jdbcType=VARCHAR},
+      </if>
+      <if test="outRefundNo != null">
+        #{outRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="refundFee != null">
+        #{refundFee,jdbcType=INTEGER},
+      </if>
+      <if test="settlementTotalFee != null">
+        #{settlementTotalFee,jdbcType=INTEGER},
+      </if>
+      <if test="settlementRefundFee != null">
+        #{settlementRefundFee,jdbcType=INTEGER},
+      </if>
+      <if test="refundStatus != null">
+        #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRecvAccout != null">
+        #{refundRecvAccout,jdbcType=VARCHAR},
+      </if>
+      <if test="successTime != null">
+        #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAccount != null">
+        #{refundAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRequestSource != null">
+        #{refundRequestSource,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.startai.sp.entity.WechatRefundNotice">
+    update wechat_refund_notice
+    <set>
+      <if test="transactionId != null">
+        transaction_id = #{transactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundId != null">
+        refund_id = #{refundId,jdbcType=VARCHAR},
+      </if>
+      <if test="outRefundNo != null">
+        out_refund_no = #{outRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null">
+        total_fee = #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="refundFee != null">
+        refund_fee = #{refundFee,jdbcType=INTEGER},
+      </if>
+      <if test="settlementTotalFee != null">
+        settlement_total_fee = #{settlementTotalFee,jdbcType=INTEGER},
+      </if>
+      <if test="settlementRefundFee != null">
+        settlement_refund_fee = #{settlementRefundFee,jdbcType=INTEGER},
+      </if>
+      <if test="refundStatus != null">
+        refund_status = #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRecvAccout != null">
+        refund_recv_accout = #{refundRecvAccout,jdbcType=VARCHAR},
+      </if>
+      <if test="successTime != null">
+        success_time = #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAccount != null">
+        refund_account = #{refundAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRequestSource != null">
+        refund_request_source = #{refundRequestSource,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.startai.sp.entity.WechatRefundNotice">
+    update wechat_refund_notice
+    set transaction_id = #{transactionId,jdbcType=VARCHAR},
+      out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      refund_id = #{refundId,jdbcType=VARCHAR},
+      out_refund_no = #{outRefundNo,jdbcType=VARCHAR},
+      total_fee = #{totalFee,jdbcType=INTEGER},
+      refund_fee = #{refundFee,jdbcType=INTEGER},
+      settlement_total_fee = #{settlementTotalFee,jdbcType=INTEGER},
+      settlement_refund_fee = #{settlementRefundFee,jdbcType=INTEGER},
+      refund_status = #{refundStatus,jdbcType=VARCHAR},
+      refund_recv_accout = #{refundRecvAccout,jdbcType=VARCHAR},
+      success_time = #{successTime,jdbcType=TIMESTAMP},
+      refund_account = #{refundAccount,jdbcType=VARCHAR},
+      refund_request_source = #{refundRequestSource,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

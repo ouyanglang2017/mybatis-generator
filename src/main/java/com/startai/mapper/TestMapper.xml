@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.startai.dao.TestMapper">
+  <resultMap id="BaseResultMap" type="com.startai.model.Test">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="t_number" jdbcType="INTEGER" property="tNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, t_number
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from test
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.startai.model.Test">
+    insert into test (id, t_number)
+    values (#{id,jdbcType=INTEGER}, #{tNumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.startai.model.Test">
+    insert into test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tNumber != null">
+        t_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tNumber != null">
+        #{tNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.startai.model.Test">
+    update test
+    <set>
+      <if test="tNumber != null">
+        t_number = #{tNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.startai.model.Test">
+    update test
+    set t_number = #{tNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

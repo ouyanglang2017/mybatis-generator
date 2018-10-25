@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.startai.dao.WechatPayNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.startai.model.WechatPayNotice">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="device_info" jdbcType="VARCHAR" property="deviceInfo" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="result_code" jdbcType="VARCHAR" property="resultCode" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="is_subscribe" jdbcType="VARCHAR" property="isSubscribe" />
+    <result column="trade_type" jdbcType="VARCHAR" property="tradeType" />
+    <result column="bank_type" jdbcType="VARCHAR" property="bankType" />
+    <result column="total_fee" jdbcType="INTEGER" property="totalFee" />
+    <result column="fee_type" jdbcType="VARCHAR" property="feeType" />
+    <result column="cash_fee" jdbcType="INTEGER" property="cashFee" />
+    <result column="cash_fee_type" jdbcType="VARCHAR" property="cashFeeType" />
+    <result column="coupon_fee" jdbcType="INTEGER" property="couponFee" />
+    <result column="coupon_count" jdbcType="INTEGER" property="couponCount" />
+    <result column="coupon_id_$n" jdbcType="VARCHAR" property="couponIdN" />
+    <result column="coupon_fee_$n" jdbcType="INTEGER" property="couponFeeN" />
+    <result column="transaction_id" jdbcType="VARCHAR" property="transactionId" />
+    <result column="out_trade_no" jdbcType="VARCHAR" property="outTradeNo" />
+    <result column="attach" jdbcType="VARCHAR" property="attach" />
+    <result column="time_end" jdbcType="TIMESTAMP" property="timeEnd" />
+    <result column="deal_state" jdbcType="VARCHAR" property="dealState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_info, sign, result_code, openid, is_subscribe, trade_type, bank_type, 
+    total_fee, fee_type, cash_fee, cash_fee_type, coupon_fee, coupon_count, coupon_id_$n, 
+    coupon_fee_$n, transaction_id, out_trade_no, attach, time_end, deal_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wechat_pay_notice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wechat_pay_notice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.startai.model.WechatPayNotice">
+    insert into wechat_pay_notice (id, device_info, sign, 
+      result_code, openid, is_subscribe, 
+      trade_type, bank_type, total_fee, 
+      fee_type, cash_fee, cash_fee_type, 
+      coupon_fee, coupon_count, coupon_id_$n, 
+      coupon_fee_$n, transaction_id, out_trade_no, 
+      attach, time_end, deal_state
+      )
+    values (#{id,jdbcType=INTEGER}, #{deviceInfo,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, 
+      #{resultCode,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{isSubscribe,jdbcType=VARCHAR}, 
+      #{tradeType,jdbcType=VARCHAR}, #{bankType,jdbcType=VARCHAR}, #{totalFee,jdbcType=INTEGER}, 
+      #{feeType,jdbcType=VARCHAR}, #{cashFee,jdbcType=INTEGER}, #{cashFeeType,jdbcType=VARCHAR}, 
+      #{couponFee,jdbcType=INTEGER}, #{couponCount,jdbcType=INTEGER}, #{couponIdN,jdbcType=VARCHAR}, 
+      #{couponFeeN,jdbcType=INTEGER}, #{transactionId,jdbcType=VARCHAR}, #{outTradeNo,jdbcType=VARCHAR}, 
+      #{attach,jdbcType=VARCHAR}, #{timeEnd,jdbcType=TIMESTAMP}, #{dealState,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.startai.model.WechatPayNotice">
+    insert into wechat_pay_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deviceInfo != null">
+        device_info,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="resultCode != null">
+        result_code,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="isSubscribe != null">
+        is_subscribe,
+      </if>
+      <if test="tradeType != null">
+        trade_type,
+      </if>
+      <if test="bankType != null">
+        bank_type,
+      </if>
+      <if test="totalFee != null">
+        total_fee,
+      </if>
+      <if test="feeType != null">
+        fee_type,
+      </if>
+      <if test="cashFee != null">
+        cash_fee,
+      </if>
+      <if test="cashFeeType != null">
+        cash_fee_type,
+      </if>
+      <if test="couponFee != null">
+        coupon_fee,
+      </if>
+      <if test="couponCount != null">
+        coupon_count,
+      </if>
+      <if test="couponIdN != null">
+        coupon_id_$n,
+      </if>
+      <if test="couponFeeN != null">
+        coupon_fee_$n,
+      </if>
+      <if test="transactionId != null">
+        transaction_id,
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no,
+      </if>
+      <if test="attach != null">
+        attach,
+      </if>
+      <if test="timeEnd != null">
+        time_end,
+      </if>
+      <if test="dealState != null">
+        deal_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deviceInfo != null">
+        #{deviceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="resultCode != null">
+        #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="isSubscribe != null">
+        #{isSubscribe,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null">
+        #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="feeType != null">
+        #{feeType,jdbcType=VARCHAR},
+      </if>
+      <if test="cashFee != null">
+        #{cashFee,jdbcType=INTEGER},
+      </if>
+      <if test="cashFeeType != null">
+        #{cashFeeType,jdbcType=VARCHAR},
+      </if>
+      <if test="couponFee != null">
+        #{couponFee,jdbcType=INTEGER},
+      </if>
+      <if test="couponCount != null">
+        #{couponCount,jdbcType=INTEGER},
+      </if>
+      <if test="couponIdN != null">
+        #{couponIdN,jdbcType=VARCHAR},
+      </if>
+      <if test="couponFeeN != null">
+        #{couponFeeN,jdbcType=INTEGER},
+      </if>
+      <if test="transactionId != null">
+        #{transactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null">
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attach != null">
+        #{attach,jdbcType=VARCHAR},
+      </if>
+      <if test="timeEnd != null">
+        #{timeEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealState != null">
+        #{dealState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.startai.model.WechatPayNotice">
+    update wechat_pay_notice
+    <set>
+      <if test="deviceInfo != null">
+        device_info = #{deviceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="resultCode != null">
+        result_code = #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="isSubscribe != null">
+        is_subscribe = #{isSubscribe,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null">
+        bank_type = #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null">
+        total_fee = #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="feeType != null">
+        fee_type = #{feeType,jdbcType=VARCHAR},
+      </if>
+      <if test="cashFee != null">
+        cash_fee = #{cashFee,jdbcType=INTEGER},
+      </if>
+      <if test="cashFeeType != null">
+        cash_fee_type = #{cashFeeType,jdbcType=VARCHAR},
+      </if>
+      <if test="couponFee != null">
+        coupon_fee = #{couponFee,jdbcType=INTEGER},
+      </if>
+      <if test="couponCount != null">
+        coupon_count = #{couponCount,jdbcType=INTEGER},
+      </if>
+      <if test="couponIdN != null">
+        coupon_id_$n = #{couponIdN,jdbcType=VARCHAR},
+      </if>
+      <if test="couponFeeN != null">
+        coupon_fee_$n = #{couponFeeN,jdbcType=INTEGER},
+      </if>
+      <if test="transactionId != null">
+        transaction_id = #{transactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attach != null">
+        attach = #{attach,jdbcType=VARCHAR},
+      </if>
+      <if test="timeEnd != null">
+        time_end = #{timeEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealState != null">
+        deal_state = #{dealState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.startai.model.WechatPayNotice">
+    update wechat_pay_notice
+    set device_info = #{deviceInfo,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      result_code = #{resultCode,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      is_subscribe = #{isSubscribe,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      bank_type = #{bankType,jdbcType=VARCHAR},
+      total_fee = #{totalFee,jdbcType=INTEGER},
+      fee_type = #{feeType,jdbcType=VARCHAR},
+      cash_fee = #{cashFee,jdbcType=INTEGER},
+      cash_fee_type = #{cashFeeType,jdbcType=VARCHAR},
+      coupon_fee = #{couponFee,jdbcType=INTEGER},
+      coupon_count = #{couponCount,jdbcType=INTEGER},
+      coupon_id_$n = #{couponIdN,jdbcType=VARCHAR},
+      coupon_fee_$n = #{couponFeeN,jdbcType=INTEGER},
+      transaction_id = #{transactionId,jdbcType=VARCHAR},
+      out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      attach = #{attach,jdbcType=VARCHAR},
+      time_end = #{timeEnd,jdbcType=TIMESTAMP},
+      deal_state = #{dealState,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
